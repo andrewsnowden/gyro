@@ -1,0 +1,25 @@
+{% extends 'gyro.account/base.html' %}
+
+{% block content %}
+<form class="form" action="login">
+    <div class="page-header">
+        <h1>Sign in</h1>
+    </div>
+    
+    {% if error %}
+    <div class="error">Error: {{ error }}</div>
+    {% endif %}
+    
+    <p><input name="email" type="text" placeholder="Email" class="input"></p>
+    <p><input name="password" type="password" placeholder="Password" class="input"></p>
+    <label class="checkbox">
+        <input type="checkbox" name="remember"> Remember me
+    </label>
+    
+    {% if next %}
+    <input type="hidden" name="next" value="{{ next }}" />
+    {% endif %}
+    
+    <p></p><button class="btn btn-primary" name="submit" type="submit">Sign in</button></p>
+</form>
+{% endblock %}

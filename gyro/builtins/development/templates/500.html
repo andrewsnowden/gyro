@@ -1,0 +1,33 @@
+{% extends "gyro.development/base.html" %}
+
+{% block content %}
+<div class="page-header">
+    <h1>500 - Internal Server Error</h1>
+</div>
+
+<script type="text/javascript">
+    jQuery(document).ready(function() {
+        prettyPrint();
+        
+        jQuery("pre.highlight-first-line").each(function(index, p) {
+            jQuery(p.children[0].children[1]).addClass("active");
+        })
+    });
+</script>
+
+<section id="traceback">
+    <div class="alert alert-error">
+        <h2>Unhandled Exception - {{ error }}</h2>
+    </div>
+    
+    {% for frame in traceback %}
+    <p>
+        {{ frame.filename }}, line {{ frame.line_no }} in <b>{{ frame.fn }}</b>
+        <pre class="highlight-first-line prettyprint linenums:{{frame.line_no}}">
+            {%- for line_no, line in frame.preview %}{{ line }}{% endfor -%}
+        </pre>
+    </p>
+    {% endfor %}
+</section>
+{% endblock %}
+

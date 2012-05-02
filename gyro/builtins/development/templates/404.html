@@ -1,0 +1,27 @@
+{% extends "gyro.development/base.html" %}
+
+{% block content %}
+<div class="page-header">
+    <h1>404 - Not Found</h1>
+</div>
+
+<section name="not-found">
+    <div class="alert alert-error">
+        <h2>No route could be found for '{{ path }}'</h2>
+    </div>
+    
+    <p>
+        The routes that were searched are:
+        
+        <table class="table table-striped">
+            {% for route, destination in routes %}
+            <tr>
+                <td>{{ route }}</td>
+                <td class="span1">&rarr;</td>
+                <td>{{ destination }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </p>
+</section>
+{% endblock %}
